@@ -3,7 +3,8 @@ image:
 
 tasks:
   - init: 'pipenv install -r ./requirements.txt'
-#     command: 'cd dojopuzzles && python manage.py runserver'
+    command: 'cd dojopuzzles && pyenv shell'
+
 vscode:
   extensions:
     - almenon.arepl@1.0.20:Uu7lIOwyLgmNWpTwCl/iqQ==
