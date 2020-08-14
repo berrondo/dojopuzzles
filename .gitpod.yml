@@ -3,7 +3,7 @@ image:
 
 tasks:
   - init: 'pipenv install -r ./requirements.txt'
-    command: 'cd dojopuzzles && pipenv run python manage.py test' #' # && pipenv shell
+    command: 'cd dojopuzzles && pipenv run python manage.py test && pipenv run python manage.py syncdb --noinput && pipenv run python manage.py runserver'
 
 vscode:
   extensions:
