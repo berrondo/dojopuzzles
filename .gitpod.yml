@@ -2,9 +2,8 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: 'pipenv install -r requirements'
-    command: 'cd dojopuzzles && python manage.py runserver'
-
+  - init: 'pipenv install -r ./requirements.txt'
+#     command: 'cd dojopuzzles && python manage.py runserver'
 vscode:
   extensions:
     - almenon.arepl@1.0.20:Uu7lIOwyLgmNWpTwCl/iqQ==
