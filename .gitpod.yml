@@ -3,7 +3,8 @@ image:
 
 tasks:
   - init: 'pipenv install -r ./requirements.txt'
-    command: 'cd dojopuzzles && pyenv shell'
+    command: 'cd dojopuzzles && pipenv shell 
+              && pipenv run python manage.py syncdb'
 
 vscode:
   extensions:
