@@ -6,9 +6,12 @@ ports:
     onOpen: open-preview
 
 tasks:
-  - init: pipenv install && pipenv run python manage.py migrate
-    command: pipenv run python manage.py runserver 0.0.0.0:8080
+  # manage is a script at .gitpod.yml
+  - init: pipenv install && pipenv run manage syncdb --noinput
+    command: pipenv run manage runserver 0.0.0.0:8080
     #'cd dojopuzzles && pipenv run python manage.py test && pipenv run python manage.py syncdb --noinput && pipenv run python manage.py runserver'
+    # pipenv shell
+    # alias manage='python /workspace/dojopuzzles/dojopuzzles/manage.py'
 
 vscode:
   extensions:
