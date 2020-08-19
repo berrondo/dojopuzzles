@@ -1,9 +1,14 @@
 image:
   file: .gitpod.Dockerfile
 
+ports:
+  - port: 8080
+    onOpen: open-preview
+
 tasks:
-  - init: 'pipenv install'
-    command: 'cd dojopuzzles && pipenv run python manage.py test && pipenv run python manage.py syncdb --noinput && pipenv run python manage.py runserver'
+  - init: pipenv install && pipenv run python manage.py migrate
+    command: pipenv run python manage.py runserver 0.0.0.0:8080
+    #'cd dojopuzzles && pipenv run python manage.py test && pipenv run python manage.py syncdb --noinput && pipenv run python manage.py runserver'
 
 vscode:
   extensions:
