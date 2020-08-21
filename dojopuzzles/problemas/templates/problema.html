@@ -79,7 +79,7 @@
 		        buttons:
 		            {
 			            "Sim, vou usar agora este problema em um Dojo!!!": function() {
-                            window.location="{% url problema-utilizado-em-dojo problema.id %}";
+                            window.location="{% url 'problema-utilizado-em-dojo' problema.id %}";
 			            },
 				        "Gostei deste problema, mas ainda não vou usá-lo em um Dojo.": function() {
 				            $(this).dialog('close');
@@ -89,7 +89,7 @@
         });
 
         $('#botao_talvez').click(function() {
-            window.location = '{% url problema-aleatorio %}';
+            window.location = '{% url 'problema-aleatorio' %}';
         });
 
         $('#botao_nao_gostei').click(function() {
