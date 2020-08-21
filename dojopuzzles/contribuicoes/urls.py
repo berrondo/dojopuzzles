@@ -1,5 +1,5 @@
 #!-*- coding: utf-8 -*-
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 urlpatterns = patterns('',
     url(r'^contribua/$', 'contribuicoes.views.contribuicao', name='contribua'),

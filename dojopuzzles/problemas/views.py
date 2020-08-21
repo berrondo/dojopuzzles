@@ -5,7 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
-from django.views.generic.list_detail import object_list
+
+from django.views.generic.list import ListView
 
 from problemas.models import Problema
 from problemas.forms import FormBusca
@@ -110,3 +111,15 @@ def busca_problema_por_titulo(request):
                 return object_list(request, **retorno_args)
 
     return HttpResponseRedirect(reverse('todos-problemas'))
+
+
+class ListaTodosOsProblemas(ListView):
+    queryset = Problema.objects.filter(publicado=True).order_by('titulo')
+    paginate_by = 15
+
+    def get_context_data(self, **kwargs):
+        context = super(ListaTodosOsProblemas, self).get_context_data(**kwargs)
+        context.update({
+            'titulo_pagina': 'Problemas cadastrados',
+        })
+        return context
