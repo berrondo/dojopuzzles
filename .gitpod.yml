@@ -7,7 +7,7 @@ ports:
 
 tasks:
   # manage is a script at .gitpod.yml
-  - init: pipenv install && pipenv run manage syncdb --noinput && pipenv run  manage loaddata 'problemas.json'
+  - init: pipenv install && pipenv shell && pipenv run manage syncdb --noinput && pipenv run  manage loaddata 'problemas.json'
     command: pipenv run manage runserver 0.0.0.0:8080
     #'cd dojopuzzles && pipenv run python manage.py test && pipenv run python manage.py syncdb --noinput && pipenv run python manage.py runserver'
     # pipenv shell
