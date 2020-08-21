@@ -9,6 +9,9 @@ verify_ssl = true
 argparse = "==1.2.1"
 wsgiref = "==0.1.2"
 Django = "==1.4"
+python-decouple = "*"
+dj-database-url = "*"
+dj-static = "*"
 
 [requires]
 python_version = "2.7"

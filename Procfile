@@ -1,0 +1,1 @@
+web: gunicorn dojopuzzles.wsgi --log-file -
