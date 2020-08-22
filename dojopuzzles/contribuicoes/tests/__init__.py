@@ -1,5 +1,5 @@
-from view_test import *
+# from view_test import *
 
-__test__ = {
-        "view_test": view_test,
-        }
+# __test__ = {
+#         "view_test": view_test,
+#         }
