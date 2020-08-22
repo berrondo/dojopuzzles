@@ -114,7 +114,10 @@ def busca_problema_por_titulo(request):
 
 
 class ListaTodosOsProblemas(ListView):
-    queryset = Problema.objects.filter(publicado=True).order_by('titulo')
+    # queryset = Problema.objects.filter(publicado=True).order_by('titulo')
+    model = Problema
+    template_name = 'problema_list.html'
+    # titulo_pagina = 'Problemas cadastrados' nao funciona aqui...
     paginate_by = 15
 
     def get_context_data(self, **kwargs):

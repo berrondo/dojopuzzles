@@ -8,12 +8,12 @@
         <h1>Busca de problemas</h1>
         {% else %}
         <h1>Todos os problemas</h1>
-        {{ hits }} problemas cadastrados.
+        {{ paginator.count }} problemas cadastrados.
         {% endif %}
 
         {% if is_paginated %}
             <br/><br/>
-            Problema {{ first_on_page }} ao problema {{ last_on_page }}.
+            Problema {{ page_obj.start_index }} ao problema {{ page_obj.end_index }}.
         {% endif %}
 
         <ul>
@@ -26,20 +26,20 @@
 
         {% if is_paginated %}
             <br/>
-            {% if has_previous %}
-                <a href="?page={{ previous }}">anterior</a> |
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">anterior</a> |
             {% endif %}
 
-            {% for pagenumber in page_range %}
-                {% if pagenumber == page %}
+            {% for pagenumber in paginator.page_range %}
+                {% if pagenumber == page_obj.number %}
                     {{ pagenumber }} |
                 {% else %}
                     <a href="?page={{ pagenumber }}">{{ pagenumber }}</a> |
                 {% endif %}
             {% endfor %}
 
-            {% if has_next %}
-                <a href="?page={{ next }}">próxima</a>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">próxima</a>
             {% endif %}
         {% endif %}
     </div>
