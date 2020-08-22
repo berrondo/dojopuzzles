@@ -6,15 +6,15 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-argparse =  "*"
-wsgiref =  "*"
+argparse = "==1.2.1"
+wsgiref = "==0.1.2"
 Django = "==1.5"
 python-decouple = "*"
 dj-database-url = "*"
 dj-static = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "2.7"
 
 [scripts]
 manage = "python /workspace/dojopuzzles/dojopuzzles/manage.py"
