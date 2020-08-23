@@ -9,29 +9,32 @@ tasks:
   # manage is a [scripts] at Pipfile
   - init: pipenv install && pipenv run manage syncdb --noinput && pipenv run  manage loaddata 'problemas.json'
     command: pipenv run manage runserver 0.0.0.0:8080
-    # alias manage='python /workspace/dojopuzzles/dojopuzzles/manage.py'
-
+# alias manage='python /workspace/dojopuzzles/dojopuzzles/manage.py'
 vscode:
   extensions:
     - almenon.arepl@1.0.20:Uu7lIOwyLgmNWpTwCl/iqQ==
     - littlefoxteam.vscode-python-test-adapter@0.3.16:tZ/6xOSSdKUaq6JCUVkD+A==
     - vscode.json-language-features@1.48.0:DuWypSrTW8Q9+ndOejK6kA==
 
+    - batisteo.vscode-django@0.20.0:gUr2ptf5xx2Pcb6pNcYqgw==
+
+    - samuelcolvin.jinjahtml@0.15.0:DAGgO4M/cnuxqBhFQ/C/Gw==
+
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
     master: true
-    # enable for all branches in this repo (defaults to false)
+# enable for all branches in this repo (defaults to false)
     branches: true
-    # enable for pull requests coming from this repo (defaults to true)
+# enable for pull requests coming from this repo (defaults to true)
     pullRequests: true
-    # enable for pull requests coming from forks (defaults to false)
+# enable for pull requests coming from forks (defaults to false)
     pullRequestsFromForks: true
-    # add a check to pull requests (defaults to true)
+# add a check to pull requests (defaults to true)
     addCheck: true
-    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
+# add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
     addComment: true
-    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
+# add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: true
-    # add a label once the prebuild is ready to pull requests (defaults to false)
+# add a label once the prebuild is ready to pull requests (defaults to false)
     addLabel: true
