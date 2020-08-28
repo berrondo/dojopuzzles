@@ -107,8 +107,16 @@ def busca_problema_por_titulo(request):
                 problema = Problema.objects.filter(titulo__icontains=titulo, publicado=True)
                 if len(problema) == 1:
                     return HttpResponseRedirect(reverse('exibe-problema', args=[problema[0].slug]))
-                retorno_args = {'queryset': problema, 'paginate_by': 15, 'extra_context': {'titulo_pagina': 'Busca de Problemas', 'acao': 'busca', 'titulo_busca': titulo}}
-                return object_list(request, **retorno_args)
+                retorno_args = {
+                    # 'queryset': problema, 
+                    # 'paginate_by': 15, 
+                    # 'extra_context': {
+                    #     'titulo_pagina': 'Busca de Problemas', 
+                    #     'acao': 'busca', 
+                    #     'titulo_busca': titulo}
+                    }
+                return ListaTodosOsProblemasNaoEncontradosNaBusca.as_view(titulo_busca=titulo)
+                # return object_list(request, **retorno_args)
 
     return HttpResponseRedirect(reverse('todos-problemas'))
 
@@ -124,5 +132,21 @@ class ListaTodosOsProblemas(ListView):
         context = super(ListaTodosOsProblemas, self).get_context_data(**kwargs)
         context.update({
             'titulo_pagina': 'Problemas cadastrados',
+        })
+        return context
+
+
+class ListaTodosOsProblemasNaoEncontradosNaBusca(ListView):
+    queryset = []
+    template_name = 'problema_list.html'
+    paginate_by = 15
+    titulo_busca = ''
+
+    def get_context_data(self, **kwargs):
+        context = super(ListaTodosOsProblemas, self).get_context_data(**kwargs)
+        context.update({
+            'titulo_pagina': 'Busca de Problemas',
+            'acao': 'busca',
+            # 'titulo_busca': titulo,
         })
         return context
