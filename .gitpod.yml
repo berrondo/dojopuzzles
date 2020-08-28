@@ -11,10 +11,10 @@ tasks:
   - init: 
       pipenv install && 
       pipenv run manage migrate --noinput && 
-      pipenv run manage loaddata 'problemas.json' &&
-      pipenv shell &&
-      cd dojopuzzles &&
-      pipenv run manage test
+      pipenv run manage loaddata 'problemas.json'
+      # pipenv shell &&
+      # cd dojopuzzles &&
+      # pipenv run manage test
     command: 
       pipenv run manage runserver 0.0.0.0:8080
 
