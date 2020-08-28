@@ -1,7 +1,8 @@
 #!-*- coding: utf-8 -*-
 from django.conf.urls import *
+from contribuicoes.views import contribuicao, contribuicao_recebida
 
-urlpatterns = patterns('',
-    url(r'^contribua/$', 'contribuicoes.views.contribuicao', name='contribua'),
-    url(r'^recebida/$', 'contribuicoes.views.contribuicao_recebida', name='contribuicao-recebida'),
-)
+urlpatterns = [
+    url(r'^contribua/$', contribuicao, name='contribua'),
+    url(r'^recebida/$', contribuicao_recebida, name='contribuicao-recebida'),
+]

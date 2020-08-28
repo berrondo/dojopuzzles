@@ -5,16 +5,18 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    (r'^problemas/', include('problemas.urls')),
-    (r'^contribuicoes/', include('contribuicoes.urls')),
+from dojopuzzles.views import index, sobre
 
-    url(r'^$', 'dojopuzzles.views.index', name='inicio'),
-    url(r'^sobre/$', 'dojopuzzles.views.sobre', name='sobre'),
+urlpatterns = [
+    url(r'^problemas/', include('problemas.urls')),
+    url(r'^contribuicoes/', include('contribuicoes.urls')),
+
+    url(r'^$', index, name='inicio'),
+    url(r'^sobre/$', sobre, name='sobre'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-)
+]
