@@ -10,11 +10,11 @@ tasks:
   # alias manage='python /workspace/dojopuzzles/dojopuzzles/manage.py'
   - init: 
       pipenv install && 
-      pipenv run manage syncdb --noinput && 
-      pipenv run  manage loaddata 'problemas.json'
+      pipenv run manage migrate --noinput && 
+      pipenv run manage loaddata 'problemas.json'
     command: 
       pipenv run manage runserver 0.0.0.0:8080
-      
+
 vscode:
   extensions:
     - almenon.arepl@1.0.20:Uu7lIOwyLgmNWpTwCl/iqQ==
