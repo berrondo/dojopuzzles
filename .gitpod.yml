@@ -11,7 +11,8 @@ tasks:
   - init: 
       pipenv install && 
       pipenv run manage migrate --run-syncdb --noinput && 
-      pipenv run manage loaddata 'problemas.json'
+      pipenv run manage loaddata 'problemas.json' &&
+      pipenv run manage collectstatic
       # pipenv shell &&
       # cd dojopuzzles &&
       # pipenv run manage test
