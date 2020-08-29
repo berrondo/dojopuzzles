@@ -12,7 +12,7 @@ tasks:
       pipenv install && 
       pipenv run manage migrate --run-syncdb --noinput && 
       pipenv run manage loaddata 'problemas.json' &&
-      pipenv run manage collectstatic
+      pipenv run manage collectstatic --noinput
       # pipenv shell &&
       # cd dojopuzzles &&
       # pipenv run manage test
