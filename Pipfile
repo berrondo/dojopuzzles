@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-Django = "==2.0"
+Django = "==2.1"
 python-decouple = "*"
 dj-database-url = "*"
 dj-static = "*"
@@ -16,6 +16,7 @@ python_version = "3.8"
 
 [scripts]
 manage = "python /workspace/dojopuzzles/dojopuzzles/manage.py"
+test = "python /workspace/dojopuzzles/dojopuzzles/manage.py test"
 server = "python /workspace/dojopuzzles/dojopuzzles/manage.py runserver"
 makemi = "python /workspace/dojopuzzles/dojopuzzles/manage.py makemigrations"
 migrate = "python /workspace/dojopuzzles/dojopuzzles/manage.py migrate"
