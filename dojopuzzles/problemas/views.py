@@ -2,9 +2,8 @@
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.template import RequestContext
 
 from django.views.generic.list import ListView
 
@@ -68,7 +67,7 @@ def exibe_problema(request, slug):
     request.session['problemas_visualizados'] = problemas_visualizados
     titulo_pagina = problema.titulo
 
-    return render_to_response('problema.html', locals(), RequestContext(request))
+    return render(request, 'problema.html', locals())
 
 
 def exibe_problema_pelo_id(request, problema_id):
@@ -82,13 +81,13 @@ def sem_problemas_novos(request):
     if 'problemas_visualizados' in request.session:
         problemas_visualizados = request.session['problemas_visualizados']
     titulo_pagina = 'Todos os problemas visualizados'
-    return render_to_response('sem_problemas_novos.html', locals(), RequestContext(request))
+    return render(request, 'sem_problemas_novos.html', locals())
 
 
 def sem_problemas(request):
     """ Exibido se nenhum problema estiver cadastrado no sistema """
     titulo_pagina = 'Nenhum problema cadastrado'
-    return render_to_response('sem_problemas.html', locals(), RequestContext(request))
+    return render(request, 'sem_problemas.html', locals())
 
 
 def problema_utilizado(request, problema_id):

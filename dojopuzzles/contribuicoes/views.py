@@ -3,8 +3,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from contribuicoes.forms import ContribuicaoForm
 from problemas.models import Problema
@@ -69,13 +68,9 @@ def contribuicao(request):
         return HttpResponseRedirect(reverse('contribuicao-recebida'))
 
     titulo_pagina = 'Contribua'
-    return render_to_response('contribua.html',
-                              locals(),
-                              RequestContext(request))
+    return render(request, 'contribua.html', locals())
 
 
 def contribuicao_recebida(request):
     messages.add_message(request, messages.INFO, 'Mensagem enviada com sucesso. Obrigado pelo contato!')
-    return render_to_response('index.html',
-                              locals(),
-                              RequestContext(request))
+    return render(request, 'index.html', locals())
