@@ -1,8 +1,8 @@
 #!-*- coding: utf-8 -*-
-from django.conf.urls import *
+from django.urls import re_path
 from contribuicoes.views import contribuicao, contribuicao_recebida
 
 urlpatterns = [
-    url(r'^contribua/$', contribuicao, name='contribua'),
-    url(r'^recebida/$', contribuicao_recebida, name='contribuicao-recebida'),
+    re_path(r'^contribua/$', contribuicao, name='contribua'),
+    re_path(r'^recebida/$', contribuicao_recebida, name='contribuicao-recebida'),
 ]
