@@ -10,7 +10,7 @@ tasks:
   - init: 
       # alias manage='python /workspace/ecommerce/ecommerce/manage.py' &&
       pipenv install &&
-      pipenv run manage migrate &&
+      pipenv run manage migrate --run-syncdb --noinput &&
       pipenv run manage loaddata 'problemas.json' &&
       pipenv run manage collectstatic --noinput &&
       pipenv run manage createsuperuser --email a@a.com --no-input
