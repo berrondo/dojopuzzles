@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.db.models import signals
 from django.template.defaultfilters import slugify
@@ -12,7 +12,7 @@ class Problema(models.Model):
     slug = models.SlugField(max_length=100, blank=False, unique=True)
     publicado = models.BooleanField(default=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.titulo
 
     def get_absolute_url(self):
@@ -31,15 +31,15 @@ class Problema(models.Model):
 
 
 class ProblemaUtilizado(models.Model):
-    problema = models.ForeignKey(Problema)
+    problema = models.ForeignKey(Problema, on_delete=models.CASCADE)
     data_utilizacao = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "Problema utilizado: %s" % (self.problema.titulo, )
 
 
 class SolucaoProblema(models.Model):
-    problema = models.ForeignKey(Problema)
+    problema = models.ForeignKey(Problema, on_delete=models.CASCADE)
     solucao = models.URLField()
 
 

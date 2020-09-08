@@ -2,7 +2,7 @@
 from django.test import TestCase
 from django.test.client import Client
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from problemas.models import Problema, ProblemaUtilizado, SolucaoProblema
 from problemas.tests.utils_test import novo_problema
@@ -70,7 +70,8 @@ class UrlsTestCase(TestCase):
         response = self.client.get(reverse('exibe-problema-pelo-id', args=[self.problema.id]))
         self.assertNotEqual(response.status_code, 404)
         self.assertEqual(response.status_code, 302)
-        self.assertEquals(response['Location'], 'http://testserver{0}'.format(reverse('exibe-problema', args=[self.problema.slug])))
+        path_ = '{0}'.format(reverse('exibe-problema', args=[self.problema.slug]))
+        self.assertTrue(response['Location'].endswith(path_)) #, 'http://testserver{0}'.format(reverse('exibe-problema', args=[self.problema.slug])))
 
         response = self.client.get(reverse('sem-problemas-novos'))
         self.assertNotEqual(response.status_code, 404)
@@ -94,7 +95,7 @@ class ExibicaoProblemaTestCase(TestCase):
 
     def setUp(self):
         # Cadastra 2 problemas que serão utilizados nos testes
-        for i in xrange(1, 3):
+        for i in range(1, 3):
             novo_problema({})
         self.client = Client()
 
@@ -178,7 +179,7 @@ class ProblemaAleatorioTest(TestCase):
 
     def setUp(self):
         # Cadastra 10 problemas que serão utilizados nos testes
-        for i in xrange(1, 11):
+        for i in range(1, 11):
             novo_problema({})
         self.client = Client()
 
@@ -196,7 +197,7 @@ class ProblemaAleatorioTest(TestCase):
         ainda não visualizado ou a informação de que todos os problemas disponíveis
         já foram visualizados """
         numero_problemas = Problema.objects.count()
-        for i in xrange(1, numero_problemas + 1):
+        for i in range(1, numero_problemas + 1):
             # Como temos 'numero_problemas' problemas de teste cadastrados,
             # após 'numero_problemas' chamadas de problemas aleatórios,
             # todos os problemas devem ser visualizados uma única vez
@@ -228,7 +229,7 @@ class ProblemaNaoDesejadoTest(TestCase):
 
     def setUp(self):
         # Cadastra 5 problemas que serão utilizados nos testes
-        for i in xrange(1, 6):
+        for i in range(1, 6):
             novo_problema({})
         self.client = Client()
 
