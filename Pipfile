@@ -6,13 +6,13 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-Django = "==1.11"
+Django = "==2.0"
 python-decouple = "*"
 dj-database-url = "*"
 dj-static = "*"
 
 [requires]
-python_version = "2.7"
+python_version = "3.8"
 
 [scripts]
 manage = "python /workspace/dojopuzzles/dojopuzzles/manage.py"
