@@ -98,54 +98,34 @@ def problema_utilizado(request, problema_id):
 
 
 def busca_problema_por_titulo(request):
+    problema = []
+
     if request.method == 'POST':
         form = FormBusca(request.POST)
-        if form.is_valid():
-            titulo = form.data['titulo'].strip()
-            if len(titulo) > 0:
-                problema = Problema.objects.filter(titulo__icontains=titulo, publicado=True)
-                if len(problema) == 1:
-                    return HttpResponseRedirect(reverse('exibe-problema', args=[problema[0].slug]))
-                retorno_args = {
-                    # 'queryset': problema, 
-                    # 'paginate_by': 15, 
-                    # 'extra_context': {
-                    #     'titulo_pagina': 'Busca de Problemas', 
-                    #     'acao': 'busca', 
-                    #     'titulo_busca': titulo}
-                    }
-                return ListaTodosOsProblemasNaoEncontradosNaBusca.as_view(titulo_busca=titulo)
-                # return object_list(request, **retorno_args)
+        if not form.is_valid():
+            return HttpResponseRedirect(reverse('todos-problemas'))
 
-    return HttpResponseRedirect(reverse('todos-problemas'))
+        titulo = form.data['titulo'].strip()
+        if len(titulo) > 0:
+            problema = Problema.objects.filter(titulo__icontains=titulo, publicado=True)
+
+            if len(problema) == 0:
+                return render(request, 'problema_list.html', {'acao': 'busca', 'titulo_busca': titulo})
+            if len(problema) == 1:
+                return HttpResponseRedirect(reverse('exibe-problema', args=[problema[0].slug]))                
+    
+    return render(request, 'problema_list.html', {'acao': 'busca', 'object_list': problema})
 
 
 class ListaTodosOsProblemas(ListView):
     queryset = Problema.objects.filter(publicado=True).order_by('titulo')
     # model = Problema
     template_name = 'problema_list.html'
-    # titulo_pagina = 'Problemas cadastrados' nao funciona aqui...
     paginate_by = 15
 
     def get_context_data(self, **kwargs):
         context = super(ListaTodosOsProblemas, self).get_context_data(**kwargs)
         context.update({
             'titulo_pagina': 'Problemas cadastrados',
-        })
-        return context
-
-
-class ListaTodosOsProblemasNaoEncontradosNaBusca(ListView):
-    queryset = []
-    template_name = 'problema_list.html'
-    paginate_by = 15
-    titulo_busca = ''
-
-    def get_context_data(self, **kwargs):
-        context = super(ListaTodosOsProblemas, self).get_context_data(**kwargs)
-        context.update({
-            'titulo_pagina': 'Busca de Problemas',
-            'acao': 'busca',
-            # 'titulo_busca': titulo,
         })
         return context
