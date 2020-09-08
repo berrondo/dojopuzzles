@@ -16,3 +16,6 @@ python_version = "2.7"
 
 [scripts]
 manage = "python /workspace/dojopuzzles/dojopuzzles/manage.py"
+server = "python /workspace/dojopuzzles/dojopuzzles/manage.py runserver"
+makemi = "python /workspace/dojopuzzles/dojopuzzles/manage.py makemigrations"
+migrate = "python /workspace/dojopuzzles/dojopuzzles/manage.py migrate"

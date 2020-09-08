@@ -7,15 +7,13 @@ ports:
 
 tasks:
   # manage is a [scripts] at Pipfile
-  # alias manage='python /workspace/dojopuzzles/dojopuzzles/manage.py'
   - init: 
-      pipenv install && 
-      pipenv run manage migrate --run-syncdb --noinput && 
+      # alias manage='python /workspace/ecommerce/ecommerce/manage.py' &&
+      pipenv install &&
+      pipenv run manage migrate &&
       pipenv run manage loaddata 'problemas.json' &&
-      pipenv run manage collectstatic --noinput
-      # pipenv shell &&
-      # cd dojopuzzles &&
-      # pipenv run manage test
+      pipenv run manage collectstatic --noinput &&
+      pipenv run manage createsuperuser --email a@a.com --no-input
     command: 
       pipenv run manage runserver 0.0.0.0:8080
 
@@ -27,6 +25,7 @@ vscode:
     - batisteo.vscode-django@0.20.0:gUr2ptf5xx2Pcb6pNcYqgw==
     - samuelcolvin.jinjahtml@0.15.0:DAGgO4M/cnuxqBhFQ/C/Gw==
     - eamodio.gitlens@10.2.1:WIWu3zHU4VPT8r/v866LUw==
+    - alexcvzz.vscode-sqlite@0.9.0:zd8ThD/lTpdSq0fXjP1QIw==
 
 github:
   prebuilds:

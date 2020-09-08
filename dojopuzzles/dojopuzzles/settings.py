@@ -2,14 +2,14 @@
 # Django settings for dojopuzzles project.
 
 import os
-from decouple import config
+from decouple import config, Csv
 from dj_database_url import parse as dburl
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# ALLOWED_HOSTS = ['*']  # for heroku...
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 ADMINS = (
     ('Renne Rocha', 'me@rennerocha.com'),
@@ -20,14 +20,6 @@ MANAGERS = ADMINS
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-    #     'NAME': 'test.db',                      # Or path to database file if using sqlite3.
-    #     'USER': '',                      # Not used with sqlite3.
-    #     'PASSWORD': '',                  # Not used with sqlite3.
-    #     'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-    #     'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    # }
 }
 
 TEMPLATES = [
@@ -44,15 +36,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            # List of callables that know how to import templates from various sources.
-            # 'loaders': [
-            #     # 'django.template.loaders.filesystem.Loader',
-            #     # 'django.template.loaders.app_directories.Loader',
-            #         # 'admin_tools.template_loaders.Loader',
-            #         'django.template.loaders.filesystem.Loader',
-            #         'django.template.loaders.app_directories.Loader',
-            #         #     ',django.template.loaders.eggs.Loader',
-            # ],
         },
 
         'DIRS': (
@@ -149,8 +132,6 @@ ROOT_URLCONF = 'dojopuzzles.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dojopuzzles.wsgi.application'
-
-
 
 INSTALLED_APPS = (
     'django.contrib.auth',
