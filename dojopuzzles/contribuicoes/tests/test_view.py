@@ -82,7 +82,7 @@ class EnvioContribuicaoTestCase(TestCase):
         """
         from problemas.models import Problema
 
-        self.assertEquals(Problema.objects.count(), 0)
+        self.assertEqual(Problema.objects.count(), 0)
         dados_formulario = {'nome': 'Usuario Teste',
                             'email': 'usuario@teste.com',
                             'assunto': 'PROBLEMA_NOVO',
@@ -90,12 +90,12 @@ class EnvioContribuicaoTestCase(TestCase):
                             'mensagem': 'Esta mensagem de teste', }
         response = self.client.post(reverse('contribua'), dados_formulario)
 
-        self.assertEquals(Problema.objects.count(), 1)
+        self.assertEqual(Problema.objects.count(), 1)
         problema = Problema.objects.all()[0]
 
-        self.assertEquals(problema.titulo, 'Problema Teste')
-        self.assertEquals(problema.descricao, 'Esta mensagem de teste')
-        self.assertEquals(problema.nome_contribuidor, 'Usuario Teste')
+        self.assertEqual(problema.titulo, 'Problema Teste')
+        self.assertEqual(problema.descricao, 'Esta mensagem de teste')
+        self.assertEqual(problema.nome_contribuidor, 'Usuario Teste')
         self.assertFalse(problema.publicado)
 
     def test_contribuicao_problema_deve_ter_titulo(self):
@@ -105,11 +105,11 @@ class EnvioContribuicaoTestCase(TestCase):
         """
         from problemas.models import Problema
 
-        self.assertEquals(Problema.objects.count(), 0)
+        self.assertEqual(Problema.objects.count(), 0)
         dados_formulario = {'nome': 'Usuario Teste',
                             'email': 'usuario@teste.com',
                             'assunto': 'PROBLEMA_NOVO',
                             'mensagem': 'Esta mensagem de teste', }
         response = self.client.post(reverse('contribua'), dados_formulario)
         self.assertContains(response, 'Informe o título do problema.', 1)
-        self.assertEquals(Problema.objects.count(), 0)
+        self.assertEqual(Problema.objects.count(), 0)

@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-Django = "==2.2"
+Django = "==3.0"
 python-decouple = "*"
 dj-database-url = "*"
 dj-static = "*"
