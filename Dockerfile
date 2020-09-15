@@ -5,4 +5,4 @@ WORKDIR /workspace
 COPY requirements.txt /workspace/
 RUN pip install -r requirements.txt
 COPY . /workspace/
-RUN echo "ALLOWED_HOSTS = ['*']" > .env
+RUN echo "ALLOWED_HOSTS = ['*']" > /workspace/.env
