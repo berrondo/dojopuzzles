@@ -6,11 +6,11 @@ ports:
   onOpen: open-preview
   
 tasks:
-  - init:
+  # - init:
         # cp .env.example .env &&
         # sed -i 's/ALLOWED_HOSTS.*/ALLOWED_HOSTS=\*/' .env &&
-        pip install -r requirements.txt &&
-        echo "ALLOWED_HOSTS = ['*']" > .env
+        # pip install -r requirements.txt &&
+        # echo "ALLOWED_HOSTS = ['*']" > .env
 
   - command: >
         python dojopuzzles/manage.py migrate &&
