@@ -7,7 +7,7 @@ ports:
   
 tasks:
   - init:
-        # pip install -r requirements.txt &&
+        pip install -r requirements.txt &&
         # cp .env.example .env &&
         # sed -i 's/ALLOWED_HOSTS.*/ALLOWED_HOSTS=\*/' .env &&
         echo "ALLOWED_HOSTS = ['*']" > .env
