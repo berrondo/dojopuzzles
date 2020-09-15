@@ -13,5 +13,6 @@ tasks:
         # echo "ALLOWED_HOSTS = ['*']" > .env
 
   - command: >
+        echo "ALLOWED_HOSTS = ['*']" > .env &&
         python dojopuzzles/manage.py migrate &&
         python dojopuzzles/manage.py runserver 0.0.0.0:8080
